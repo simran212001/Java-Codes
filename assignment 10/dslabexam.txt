@@ -1,0 +1,23 @@
+SELECT movie_id
+from movie
+where release_date BETWEEN 1 JANUARY 1991 AND 31 DECEMBER 1995 ;
+
+Q2
+SELECT person_lname
+from people
+where person_lname BETWEEN A AND M ;
+
+Q3
+SELECT movie_id , movie_title
+from movie
+WHERE %movie_title='The' ;
+
+
+Q4
+SELECT COUNT(*)
+FROM movie
+WHERE release_date BETWEEN 1 JANUARY 1980 AND 31 DECEMBER 1980;
+
+Q5
+SELECT release_date 
+from movie

@@ -1,0 +1,141 @@
+NAME-SIMRAN SIMOLIYA
+ROLL NO.-2019153
+
+
+Q-1
+SELECT branch_name
+FROM loan
+Q2
+SELECT DISTINCT branch_name
+FROM loan
+  
+Q3
+SELECT loan_number,branch_name,(amount*500)
+FROM loan
+
+Q4
+SELECT loan_number
+FROM loan
+WHERE branch_name="S street"
+AND amount>1200
+
+5)
+SELECT loan_number FROM loan WHERE amount>900 AND amount<1600;
+
+6)
+SELECT customer_name, LOAN_NUMBER, AMOUNT FROM loan, customer WHERE BRANCH_NAME="S Street"
+
+7) 
+SELECT * FROM borrower, loan
+
+8) 
+SELECT customer_name, LOAN_NUMBER, AMOUNT FROM loan, customer WHERE BRANCH_NAME="S Street"
+
+9) 
+SELECT customer_name, LOAN_NUMBER, AMOUNT FROM loan, customer ORDER BY customer_name
+
+10)
+SELECT borrower.customer_name, loan.loan_number AS loan_id, loan.amount
+FROM loan, borrower
+WHERE borrower.loan_number = loan.loan_number
+ORDER BY borrower.customer_name
+
+11)
+SELECT branch_name 
+FROM branch
+WHERE assets > (SELECT MIN(assets)
+                FROM branch
+                WHERE branch_city LIKE "Hyderabad")
+
+
+12)
+SELECT customer_name 
+FROM customer
+WHERE customer_street LIKE "%Street%"
+
+13)
+SELECT b.customer_name
+FROM loan l, borrower b
+WHERE b.loan_number = l.loan_number AND l.branch_name = "S street"
+ORDER BY b.customer_name ASC, l.amount  DESC;
+
+14)
+SELECT account.account_number
+FROM account
+WHERE balance < 700
+ORDER BY balance ASC
+
+15)
+SELECT account.account_number
+FROM account
+WHERE balance < 700
+ORDER BY balance ASC
+
+16)
+SELECT *
+FROM branch
+ORDER BY branch_city, assets DESC;
+
+17)
+SELECT borrower.customer_name
+FROM borrower
+UNION
+SELECT depositor.customer_name
+FROM depositor;
+
+
+18)
+SELECT D.customer_name
+FROM depositor D, borrower b 
+where (D.customer_name=B.customer_name)
+and D.account_number is not null
+and B.loan_number is not null
+
+19)
+SELECT avg(balance)
+FROM account
+WHERE branch_name="S street"
+
+20)
+SELECT COUNT(D.customer_name),A.branch_name
+FROM account A,depositor D
+WHERE (A.account_number=D.account_number)
+
+21)
+SELECT customer.customer_name, DAYNAME(account.DATE),account.balance, MONTHNAME(account.DATE)
+   FROM customer,depositor,account
+   WHERE depositor.customer_name = customer.customer_name AND depositor.account_number = account.account_number AND customer.customer_city LIKE "Patna"
+
+22-
+SELECT branch_name 
+FROM branch 
+WHERE (
+	SELECT AVG(balance) 
+	FROM account 
+	WHERE account.branch_name = branch.branch_name
+)
+
+
+23-
+SELECT branch_name 
+FROM branch 
+WHERE assets > ANY ( 
+	SELECT assets 
+	FROM branch 
+	WHERE branch_city = 'Delhi' 
+)
+
+24) 
+UPDATE account SET balance=balance+(0.1*balance) WHERE balance>500;
+		UPDATE account SET balance=balance+(0.05*balance) WHERE balance<500;
+
+25)
+ALTER TABLE BRANCH ADD country VARCHAR(30);
+
+
+26)
+ALTER TABLE branch
+      MODIFY branch_city VARCHAR(30) NOT NULL;
+27)
+ALTER TABLE branch
+    ALTER branch_city SET DEFAULT 'Mumbai';
